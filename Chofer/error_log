@@ -1,0 +1,4 @@
+[19-Feb-2021 20:20:46 UTC] PHP Notice:  Undefined index: LZFpyme in /home/u619350364/domains/lazafra.com.mx/public_html/lazafra/Chofer/imprimeTicketRecolecta.php on line 15
+[19-Feb-2021 20:20:46 UTC] PHP Notice:  Undefined index: LZFident in /home/u619350364/domains/lazafra.com.mx/public_html/lazafra/Chofer/imprimeTicketRecolecta.php on line 16
+[19-Feb-2021 20:20:46 UTC] PHP Notice:  Undefined variable: link in /home/u619350364/domains/lazafra.com.mx/public_html/lazafra/Chofer/imprimeTicketRecolecta.php on line 109
+[19-Feb-2021 20:20:46 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/u619350364/domains/lazafra.com.mx/public_html/lazafra/Chofer/imprimeTicketRecolecta.php on line 109

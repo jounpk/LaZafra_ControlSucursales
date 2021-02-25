@@ -1,0 +1,46 @@
+<?php
+session_start();
+define('INCLUDE_CHECK',1);
+require_once('../include/connect.php');
+
+$ident = (isset($_POST['ident'])) ? $_POST['ident'] : '' ;
+$estatus = (isset($_POST['estatus'])) ? $_POST['estatus'] : '' ;
+$txt = '';
+$userReg=$_SESSION['LZFident'];
+
+//print_r($_POST);
+if ($ident == '' && $estatus == '') {
+  errorBD('Faltan datos Obligatorios, Notifica al Administrador.');
+
+} else {
+
+  $sql="SELECT solc.*, suc.nombre AS sucursal FROM activaredicionstock solc
+  INNER JOIN sucursales suc ON solc.idSucSolicita=suc.id 
+   WHERE solc.id = $ident ";
+  $result=mysqli_query($link,$sql) or die('0|Problemas al recuperar los Datos. ');
+  $cantRes = mysqli_num_rows($result);
+
+  if ($cantRes >= 1) {
+    $dat= mysqli_fetch_array($result);
+    $suc=$dat["sucursal"];
+    
+      $sql="UPDATE activaredicionstock SET estatus=$estatus, fechaAutoriza=NOW(), idUserAutoriza=$userReg WHERE id = $ident ";
+    
+    $result=mysqli_query($link,$sql) or die('0|Problemas al actualizar los Datos. ');
+    if($estatus==3){
+
+      echo '1|Se ha Deshabilitado Correctamente la solicitud de '.$suc .'.';
+    }else{
+      echo '1|Se ha Habilitado Correctamente la solicitud de  '.$suc .'.';
+  
+    }
+  }else{
+    errorBD('No se encontró el registro seleccionado, intentelo de nuevo o Notifique al Administrador');
+  }
+}
+
+function errorBD($error){
+  echo '0|'.$error;
+  exit(0);
+  }
+?>
